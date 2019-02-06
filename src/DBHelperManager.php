@@ -71,7 +71,9 @@ class DBHelperManager
             throw new \InvalidArgumentException("Connection name is required.");
         }
 
-        $connectionData = array_get($this->dbConfig, $connectionName, []);
+        $connections = array_get($this->dbConfig, 'connections', []);
+
+        $connectionData = array_get($connections, $connectionName, []);
 
         $driverName = array_get($connectionData, 'driver');
 

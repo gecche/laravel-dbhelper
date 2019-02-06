@@ -402,11 +402,11 @@ class DBHelperMysqlHelper implements DBHelperContract
                             case 'tinyint':
                                 if (isset($length) && $length < 2 && $length > 0) {
                                     $column['options'] = array(
-                                        0 => ucfirst(trans("app.no")),
-                                        1 => ucfirst(trans("app.yes"))
+                                        0 => 0,
+                                        1 => 1
                                     );
                                     if (array_get($row, 'Null', 'YES') == 'YES') {
-                                        $column['options'] = array(env('FORM_ITEM_NONE', -99) => trans_uc('app.item_none')) + $column['options'];
+                                        $column['options'] = [-1 => null] + $column['options'];
                                     }
                                 }
                                 break;
@@ -421,7 +421,7 @@ class DBHelperMysqlHelper implements DBHelperContract
 
 
                                 if (array_get($row, 'Null', 'YES') == 'YES') {
-                                    $column['options'] = array(env('FORM_ITEM_NONE', -99) => trans_uc('app.item_none')) + $column['options'];
+                                    $column['options'] = [-1 => null] + $column['options'];
                                 }
 
                                 break;
