@@ -2,7 +2,7 @@
 
 namespace Gecche\DBHelper;
 
-use Gecche\ModelPlus\ModelPlus;
+use Gecche\Breeze\Breeze;
 use \Illuminate\Database\Connection;
 use Illuminate\Support\Str;
 use InvalidArgumentException;

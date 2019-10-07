@@ -1,7 +1,7 @@
 <?php namespace Gecche\DBHelper\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Gecche\ModelPlus\Database\Schema\Blueprint;
+use Gecche\Breeze\Database\Schema\Blueprint;
 /**
  * @see \Illuminate\Database\Schema\Builder
  */
