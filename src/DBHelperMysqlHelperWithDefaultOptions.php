@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Manager;
 use Gecche\DBHelper\Contracts\DBHelper as DBHelperContract;
 
-class DBHelperMysqlHelper implements DBHelperContract
+class DBHelperMysqlHelperWithDefaultOptions implements DBHelperContract
 {
     /*
          * Metodi per popolare i form automaticamente dal database, funzionano solo con Mysql al momento.
