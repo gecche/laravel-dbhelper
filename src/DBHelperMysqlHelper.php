@@ -6,6 +6,7 @@ use Illuminate\Cache\CacheManager;
 use \Illuminate\Database\Connection;
 use Illuminate\Database\ConnectionResolverInterface;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Manager;
 use Gecche\DBHelper\Contracts\DBHelper as DBHelperContract;
 
