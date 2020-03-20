@@ -8,6 +8,7 @@ use Illuminate\Database\ConnectionResolverInterface;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Manager;
 use Gecche\DBHelper\Contracts\DBHelper as DBHelperContract;
+use Illuminate\Support\Arr;
 
 class DBHelperMysqlHelperWithDefaultOptions implements DBHelperContract
 {
@@ -391,10 +392,10 @@ class DBHelperMysqlHelperWithDefaultOptions implements DBHelperContract
 
 
             if ($raw) {
-                $columns[$row['Field']] = array_get($row, 'Default');
+                $columns[$row['Field']] = Arr::get($row, 'Default');
             } else {
                 $column = $this->dataType($type);
-                $column['column_default'] = array_get($row, 'Default');
+                $column['column_default'] = Arr::get($row, 'Default');
 
                 switch ($column['type']) {
                     case 'int':
@@ -405,7 +406,7 @@ class DBHelperMysqlHelperWithDefaultOptions implements DBHelperContract
                                         0 => 0,
                                         1 => 1
                                     );
-                                    if (array_get($row, 'Null', 'YES') == 'YES') {
+                                    if (Arr::get($row, 'Null', 'YES') == 'YES') {
                                         $column['options'] = [-1 => null] + $column['options'];
                                     }
                                 }
@@ -420,7 +421,7 @@ class DBHelperMysqlHelperWithDefaultOptions implements DBHelperContract
                                 $column['options'] = array_combine($options, $options);
 
 
-                                if (array_get($row, 'Null', 'YES') == 'YES') {
+                                if (Arr::get($row, 'Null', 'YES') == 'YES') {
                                     $column['options'] = [-1 => null] + $column['options'];
                                 }
 
@@ -437,7 +438,7 @@ class DBHelperMysqlHelperWithDefaultOptions implements DBHelperContract
 
 
         if ($single_column) {
-            $columns = array_get($columns, $single_column, array());
+            $columns = Arr::get($columns, $single_column, array());
         }
 
         if ($cacheKey)
@@ -464,8 +465,8 @@ class DBHelperMysqlHelperWithDefaultOptions implements DBHelperContract
 
 
             $column = $this->dataType($type);
-            $column['default'] = array_get($row, 'Default');
-            $column['nullable'] = (array_get($row, 'Null', 'YES') == 'YES');
+            $column['default'] = Arr::get($row, 'Default');
+            $column['nullable'] = (Arr::get($row, 'Null', 'YES') == 'YES');
 
 
             switch ($column['type']) {

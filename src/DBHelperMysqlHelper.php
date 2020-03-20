@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Manager;
 use Gecche\DBHelper\Contracts\DBHelper as DBHelperContract;
+use Illuminate\Support\Arr;
 
 class DBHelperMysqlHelper implements DBHelperContract
 {
@@ -392,10 +393,10 @@ class DBHelperMysqlHelper implements DBHelperContract
 
 
             if ($raw) {
-                $columns[$row['Field']] = array_get($row,'Default');
+                $columns[$row['Field']] = Arr::get($row,'Default');
             } else {
                 $column = $this->dataType($type);
-                $column['column_default'] = array_get($row,'Default');
+                $column['column_default'] = Arr::get($row,'Default');
 
                 switch ($column['type']) {
                     case 'int':
@@ -406,7 +407,7 @@ class DBHelperMysqlHelper implements DBHelperContract
                                         0 => 0,
                                         1 => 1
                                     );
-                                    if (array_get($row, 'Null', 'YES') == 'YES') {
+                                    if (Arr::get($row, 'Null', 'YES') == 'YES') {
                                         $column['options'] = [-1 => null] + $column['options'];
                                     }
                                 }
@@ -421,7 +422,7 @@ class DBHelperMysqlHelper implements DBHelperContract
                                 $column['options'] = array_combine($options, $options);
 
 
-                                if (array_get($row, 'Null', 'YES') == 'YES') {
+                                if (Arr::get($row, 'Null', 'YES') == 'YES') {
                                     $column['options'] = [-1 => null] + $column['options'];
                                 }
 
@@ -439,7 +440,7 @@ class DBHelperMysqlHelper implements DBHelperContract
 
 
         if ($single_column) {
-            $columns = array_get($columns, $single_column, array());
+            $columns = Arr::get($columns, $single_column, array());
         }
 
         if($cacheKey)

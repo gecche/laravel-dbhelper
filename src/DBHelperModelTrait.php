@@ -28,7 +28,7 @@ trait DBHelperModelTrait
             $this->setAttributesFromDB();
 
         return $key
-            ? array_get($this->dbAttributes,$key)
+            ? Arr::get($this->dbAttributes,$key)
             : $this->dbAttributes;
     }
 

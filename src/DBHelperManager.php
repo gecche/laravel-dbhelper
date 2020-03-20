@@ -6,6 +6,7 @@ use Gecche\Breeze\Breeze;
 use \Illuminate\Database\Connection;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
+use Illuminate\Support\Arr;
 
 class DBHelperManager
 {
@@ -53,7 +54,7 @@ class DBHelperManager
 
         $dbConnection = $this->app['db']->connection($connectionName);
 
-        return new DBHelperMysqlHelper($connectionName, $dbConnection, $this->app->make('cache'), array_get($this->config,'cache',false));
+        return new DBHelperMysqlHelper($connectionName, $dbConnection, $this->app->make('cache'), Arr::get($this->config,'cache',false));
     }
 
 
@@ -64,18 +65,18 @@ class DBHelperManager
     public function helper($connectionName = null)
     {
         if (is_null($connectionName)) {
-            $connectionName = array_get($this->dbConfig, 'default');
+            $connectionName = Arr::get($this->dbConfig, 'default');
         }
 
         if (is_null($connectionName)) {
             throw new \InvalidArgumentException("Connection name is required.");
         }
 
-        $connections = array_get($this->dbConfig, 'connections', []);
+        $connections = Arr::get($this->dbConfig, 'connections', []);
 
-        $connectionData = array_get($connections, $connectionName, []);
+        $connectionData = Arr::get($connections, $connectionName, []);
 
-        $driverName = array_get($connectionData, 'driver');
+        $driverName = Arr::get($connectionData, 'driver');
 
         if (is_null($driverName)) {
             throw new \InvalidArgumentException("Driver name is required.");
