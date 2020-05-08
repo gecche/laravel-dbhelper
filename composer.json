@@ -20,8 +20,11 @@
     "extra": {
         "laravel": {
             "providers": [
-
-            ]
+                "Gecche\\DBHelper\\DBHelperServiceProvider"
+            ],
+            "aliases": {
+                "DBHelper": "Gecche\\DBHelper\\Facades\\DBHelper"
+            }
         }
     }
 }
