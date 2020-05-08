@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Manager;
 use Gecche\DBHelper\Contracts\DBHelper as DBHelperContract;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class DBHelperMysqlHelper implements DBHelperContract
 {
@@ -539,7 +540,7 @@ class DBHelperMysqlHelper implements DBHelperContract
 
 
             //ELIMINO I CAMPI NON IN LINGUA
-            if (!ends_with($field, '_' . $lang))
+            if (!Str::endsWith($field, '_' . $lang))
                 continue;
 
             list($type, $length) = $this->parseType($row['Type']);
