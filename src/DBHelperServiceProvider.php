@@ -2,10 +2,6 @@
 
 namespace Gecche\DBHelper;
 
-use Gecche\Breeze\Console\CompileRelationsCommand;
-use Gecche\Breeze\DBHelpers\DBHelpersManager;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
 
 class DBHelperServiceProvider extends ServiceProvider
