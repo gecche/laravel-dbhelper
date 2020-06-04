@@ -512,7 +512,7 @@ class DBHelperMysqlHelper implements DBHelperContract
         $enum = array();
         foreach (explode(',', $matches[1]) as $value) {
             $v = trim($value, "'");
-            $enum = array_add($enum, $v, $v);
+            $enum = Arr::add($enum, $v, $v);
         }
 
         if($cacheKey)
