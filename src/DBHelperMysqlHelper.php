@@ -512,7 +512,8 @@ class DBHelperMysqlHelper implements DBHelperContract
         $enum = array();
         foreach (explode(',', $matches[1]) as $value) {
             $v = trim($value, "'");
-            $enum = Arr::add($enum, $v, $v);
+            //$enum = Arr::add($enum, $v, $v); //QUESTO FA CASINO SE LE LABEL SONO COL PUNTO
+            $enum[$v] = $v;
         }
 
         if($cacheKey)
