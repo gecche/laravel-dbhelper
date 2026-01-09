@@ -303,7 +303,7 @@ class DBHelperMysqlHelper implements DBHelperContract
             $column['data_type'] = $type;
             $column['is_nullable'] = ($row['Null'] == 'YES');
 
-            switch ($column['type']) {
+            switch (Arr::get($column,'type')) {
                 case 'float':
                     if (isset($length)) {
                         list($column['numeric_precision'], $column['numeric_scale']) = explode(',', $length);
@@ -352,7 +352,7 @@ class DBHelperMysqlHelper implements DBHelperContract
                     $column['form_type'] = 'datetime';
                     break;
                 default:
-                    $column['form_type'] = $column['type'];
+                    $column['form_type'] = Arr::get($column,'type');
                     break;
             }
 
@@ -399,7 +399,7 @@ class DBHelperMysqlHelper implements DBHelperContract
                 $column = $this->dataType($type);
                 $column['column_default'] = Arr::get($row,'Default');
 
-                switch ($column['type']) {
+                switch (Arr::get($column,'type')) {
                     case 'int':
                         switch ($type) {
                             case 'tinyint':
@@ -549,7 +549,7 @@ class DBHelperMysqlHelper implements DBHelperContract
             $column = $this->dataType($type);
 
             //ELIMINO I CAMPI NON STRING
-            if ($column['type'] !== 'string')
+            if (Arr::get($column,'type') !== 'string')
                 continue;
 
             //$column['column_default'] = $row['Default'];
@@ -566,6 +566,7 @@ class DBHelperMysqlHelper implements DBHelperContract
                 case 'tinytext':
                 case 'mediumtext':
                 case 'longtext':
+                case 'json':
                     //$column['collation'] = $row['Collation'];
                     $column['type'] = 'text';
                     $column['length'] = null;
