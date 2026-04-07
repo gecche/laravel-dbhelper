@@ -57,6 +57,13 @@ class DBHelperManager
         return new DBHelperMysqlHelper($connectionName, $dbConnection, $this->app->make('cache'), Arr::get($this->config,'cache',false));
     }
 
+    public function createPgsqlHelper($connectionName)
+    {
+        $dbConnection = $this->app['db']->connection($connectionName);
+
+        return new DBHelperPostgresHelper($connectionName, $dbConnection, $this->app->make('cache'), Arr::get($this->config, 'cache', false));
+    }
+
 
     /**
      * @param string $connectionName
